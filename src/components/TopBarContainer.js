@@ -1,17 +1,20 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
-import config from '../config/default.json'
-
-function getUserProfile () {
-  return null
-}
+import { getUserProfile, getLoginUrl, getLogoutUrl } from '../api/auth'
 
 export default () => {
-  const profile = getUserProfile()
+  const [profile, setProfile] = useState()
 
+  useEffect(() => {
+    getUserProfile().then((data) => setProfile(data))
+  }, [])
+
+  console.log('profile', profile)
   return (
     <div style={{ width: '100%', height: '50px' }}>
-      { profile ? <span>Hello { profile.name }</span> : <a href={ config.loginUrl }>Login</a> }
+      { profile ?
+        <span>Hello <span style={{ fontWeight: 'bold' }}>{ profile.user.handle }</span> <a href={ getLogoutUrl() }>Logout</a></span> :
+        <a href={ getLoginUrl() }>Login</a> }
     </div>
   )
 }

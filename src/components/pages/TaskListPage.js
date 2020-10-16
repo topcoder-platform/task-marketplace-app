@@ -7,7 +7,7 @@ export default () => {
   return (
     <div className="task-page">
       <TopBarContainer />
-     <TaskList />
+      <TaskList />
     </div>
   )
 }

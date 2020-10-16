@@ -1834,6 +1834,12 @@
   resolved "https://registry.yarnpkg.com/@testing-library/user-event/-/user-event-7.2.1.tgz#2ad4e844175a3738cb9e7064be5ea070b8863a1c"
   integrity sha512-oZ0Ib5I4Z2pUEcoo95cT1cr6slco9WY7yiPpG+RGNkj8YcYgJnM7pXmYmorNOReh8MIGcKSqXyeGjxnr8YiZbA==
 
+"@topcoder-platform/tc-auth-lib@topcoder-platform/tc-auth-lib":
+  version "1.0.0"
+  resolved "https://codeload.github.com/topcoder-platform/tc-auth-lib/tar.gz/2608982c1d290716fd880e47dc2219e9f681b441"
+  dependencies:
+    lodash "^4.17.19"
+
 "@types/aria-query@^4.2.0":
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/@types/aria-query/-/aria-query-4.2.0.tgz#14264692a9d6e2fa4db3df5e56e94b5e25647ac0"

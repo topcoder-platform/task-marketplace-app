@@ -12,8 +12,6 @@ export default () => {
     <div>Loading...</div>
   )
 
-  console.log(data)
-
   return (
     <div className="ui container segment">
       <div className="ui cards">
