@@ -7,21 +7,17 @@ import { getAllTask } from '../../api/challenges'
 
 export default () => {
   const [profile, setProfile] = useState()
-  const [token, setToken] = useState()
   const [tasks, setTasks] = useState()
 
   useEffect(() => {
     getUserProfile().then((data) => {
       if (data) {
         setProfile(data.profile)
-        setToken(data.token)
       }
+
+      getAllTask(data?.token).then((tasks) => setTasks(tasks))
     })
   }, [])
-
-  useEffect(() => {
-    getAllTask(token).then((tasks) => setTasks(tasks))
-  }, [token])
 
   return (
     <div className="task-page">

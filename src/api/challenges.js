@@ -8,14 +8,14 @@ const client = axios.create({
 export async function getAllTask (token) {
   const headers = {
     accept: 'application/json',
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
   }
 
   if (token) {
     headers.Authorization = `Bearer ${token}`
   }
 
-  const r = await client.get('?page=1&perPage=20&types=Task&isLightweight=false&isTask=false&taskIsAssigned=false', headers)
+  const r = await client.get('?page=1&perPage=20&types=Task&isLightweight=false&isTask=false&taskIsAssigned=false', { headers })
 
   console.log(r.data)
 
