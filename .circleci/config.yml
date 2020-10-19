@@ -1,0 +1,88 @@
+version: 2
+defaults: &defaults
+    docker:
+      - image: node:latest 
+install_dependency: &install_dependency
+  name: Installation of build and deployment dependencies.
+  command: |
+    set +e
+    apt-get update -y
+    apt install awscli -y
+    apt install jq -y
+    chmod 777 /etc/mime.types
+    sed -i 's/^application\/x-font-woff.*/application\/font-woff\t\t\t\twoff/' /etc/mime.types
+    sed -i 's/^image\/vnd.microsoft.icon.*/image\/vnd.microsoft.icon/' /etc/mime.types
+    sed -i 's/^image\/x-icon.*/image\/x-icon\t\t\t\tico/' /etc/mime.types    
+install_deploysuite: &install_deploysuite
+  name: Installation of install_deploysuite.
+  command: |
+    git clone --branch v1.4.2 https://github.com/topcoder-platform/tc-deploy-scripts ../buildscript
+    cp ./../buildscript/master_deploy.sh .
+    cp ./../buildscript/buildenv.sh .
+    cp ./../buildscript/awsconfiguration.sh .
+restore_cache_settings_for_build: &restore_cache_settings_for_build
+  key: tma-node-modules-{{ checksum "package.json" }}
+save_cache_settings: &save_cache_settings
+  key: tma-node-modules-{{ checksum "package.json" }}
+  paths:
+    - node_modules
+running_yarn_build: &running_yarn_build
+          name: Running yarn Build
+          command: |
+            # source buildenvvar
+            yarn build
+
+builddeploy_steps: &builddeploy_steps
+      - checkout
+      - setup_remote_docker
+      - run: *install_dependency
+      - run: *install_deploysuite
+      #- restore_cache: *restore_cache_settings_for_build
+      #- run: npm install
+      #- save_cache: *save_cache_settings
+      # - run: 
+      #     name: "configuring environment"
+      #     command: |
+      #       ./awsconfiguration.sh $DEPLOY_ENV
+      #       ./buildenv.sh -e $DEPLOY_ENV -b ${LOGICAL_ENV}-${APPNAME}-buildvar
+      - run: *running_yarn_build          
+      - deploy:
+          name: Running MasterScript.
+          command: |
+            ./awsconfiguration.sh $DEPLOY_ENV
+            source awsenvconf
+            # ./buildenv.sh -e $DEPLOY_ENV -b ${LOGICAL_ENV}-${APPNAME}-deployvar
+            # source buildenvvar
+            # ./master_deploy.sh -d CFRONT -e $DEPLOY_ENV -c true                    
+
+jobs:
+  # Build & Deploy against development backend
+  "build-dev":
+    <<: *defaults
+    environment:
+      DEPLOY_ENV: "DEV"
+      LOGICAL_ENV: "dev"
+      APPNAME: "task-marketplace-app"          
+    steps: *builddeploy_steps
+  "build-prod":
+    <<: *defaults
+    environment:
+      DEPLOY_ENV: "PROD"
+      LOGICAL_ENV: "prod"
+      APPNAME: "task-marketplace-app"        
+    steps: *builddeploy_steps
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build-dev:
+          context : org-global
+          filters:
+            branches:
+              only: [ develop, dev-ci ]
+      - build-prod:
+          context : org-global
+          filters:
+            branches:
+              only: [ master ]
