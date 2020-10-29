@@ -9,8 +9,8 @@ import { ListView } from '../screens/list'
 
 // Here, more routes can be added
 const routes = [{
-  name: 'challenges',
-  url: '/challenges',
+  name: 'tasks',
+  url: '/',
   component: <ListView />,
   isExact: true,
   home: true
@@ -30,7 +30,7 @@ export const RoutesWrapper = () => {
             </Route>
           ))
         }
-        <Redirect to="/challenges" />
+        <Redirect to="/" />
       </Switch>
     </Router>
   )
