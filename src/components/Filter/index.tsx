@@ -1,8 +1,8 @@
 import React from 'react'
 import Chip from '@material-ui/core/Chip'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
-import RadioGroup from '@material-ui/core/RadioGroup'
-import Radio from '@material-ui/core/Radio'
+import FormGroup from '@material-ui/core/FormGroup'
+import Checkbox from '@material-ui/core/Checkbox'
 import CloseArrowIcon from '../../assets/arrow-left.svg'
 import CrossIcon from '../../assets/cross.svg'
 import { getGroups } from '../../services/filter'
@@ -68,11 +68,12 @@ export const Filter = ({ closeIconType, onCloseFilter, onFilterApplied }: Filter
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [auth])
 
-  const onGroupSelected = (event: any) => {
-    // Toggles the selected radio button
-    dispatch(filterActions.setInfo({
-      selectedGroup: event.target.value
-    }))
+  const onGroupChecked = (event: any) => {
+    if (event.target.checked) {
+      dispatch(filterActions.addGroup({ groupId: event.target.value }))
+    } else {
+      dispatch(filterActions.removeGroup({ groupId: event.target.value }))
+    }
   }
 
   const onShowAll = () => {
@@ -153,28 +154,19 @@ export const Filter = ({ closeIconType, onCloseFilter, onFilterApplied }: Filter
             <div className={styles.groupWrapper}>
               <div className={styles.groupLabel}>Groups</div>
               <div className={styles.groupsList}>
-                <RadioGroup
-                  name="group"
-                  value={filterState.selectedGroup}
-                  onChange={onGroupSelected}
-                >
-                  {/* Added this none radio button to unselect this field */}
-                  <FormControlLabel
-                    value={''}
-                    control={<Radio color="primary" />}
-                    label={'None'}
-                  />
+                <FormGroup>
                   {
                     filterState.groups.map((group) => (
                       <FormControlLabel
                         key={group.id}
                         value={group.id}
-                        control={<Radio color="primary" />}
+                        control={<Checkbox color="primary" />}
+                        onChange={onGroupChecked}
                         label={group.name}
                       />
                     ))
                   }
-                </RadioGroup>
+                </FormGroup>
               </div>
               {
                 isShowAll && (

@@ -11,7 +11,7 @@ import { FilterParams } from '../store/models/filter'
 export const getTasks = async (page: number, params?: FilterParams) => {
   let token = ''
 
-  if (params && params.group) {
+  if (params && params.groups.length > 0) {
     // if tags are available and if the token is not available then we throw the error
     token = await getFreshToken()
   } else {
@@ -28,8 +28,8 @@ export const getTasks = async (page: number, params?: FilterParams) => {
   // to get only the tasks
   let url = `${Config.API_URL}/challenges?types=Task&taskIsAssigned=false&isLightweight=false&page=${page}&perPage=${Config.PER_PAGE}`
   if (params) {
-    if (params.group) {
-      url += `&group=${params.group}`
+    if (params.groups) {
+      url += params.groups.map((groupId) => `&groups[]=${groupId}`).join('&')
     }
     if (params.tags) {
       url = params.tags.reduce((acc, item) => {

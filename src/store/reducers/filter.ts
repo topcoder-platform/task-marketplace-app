@@ -7,7 +7,7 @@ import { Filter } from '../models/filter'
 const initState: Filter | null = {
   groupTotalCount: 0,
   groups: [],
-  selectedGroup: '',
+  selectedGroups: [],
   techStack: []
 }
 
@@ -22,6 +22,18 @@ export const { actions, ...filterSlice } = createSlice({
       return {
         ...(state || {}),
         ...payload
+      }
+    },
+    addGroup (state, { payload }) {
+      return {
+        ...state,
+        selectedGroups: [ ...state.selectedGroups, payload.groupId ]
+      }
+    },
+    removeGroup (state, { payload }) {
+      return {
+        ...state,
+        selectedGroups: state.selectedGroups.filter((groupId) => groupId !== payload.groupId)
       }
     }
   }

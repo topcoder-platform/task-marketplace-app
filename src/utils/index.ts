@@ -25,10 +25,10 @@ export const getTaskPrice = (priceSets: PrizeSet[] = []) => {
  * @param state the state of the filter
  */
 export const getFilterParams = (state: Filter) => {
-  const { selectedGroup, techStack } = state
+  const { selectedGroups, techStack } = state
   const filterParams = {} as FilterParams
-  if (selectedGroup) {
-    filterParams.group = selectedGroup
+  if (selectedGroups) {
+    filterParams.groups = selectedGroups
   }
 
   if (techStack.length > 0) {

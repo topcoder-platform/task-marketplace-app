@@ -13,13 +13,13 @@ export interface Group {
 }
 
 export interface FilterParams {
-  group: string;
+  groups: string[];
   tags: string[];
 }
 
 export interface Filter {
   groupTotalCount: number;
   groups: Group[];
-  selectedGroup: string;
+  selectedGroups: string[];
   techStack: string[];
 }
