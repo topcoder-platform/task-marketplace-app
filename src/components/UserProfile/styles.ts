@@ -92,6 +92,7 @@ export const useStyles = makeStyles((theme) => ({
     fontFamily: theme.fontFamily.roboto,
     fontWeight: 700,
     fontSize: 18,
+    textTransform: 'uppercase',
     lineHeight: '30px',
     margin: '0 30px',
     cursor: 'pointer',
