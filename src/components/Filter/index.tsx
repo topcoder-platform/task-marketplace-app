@@ -33,7 +33,6 @@ export const Filter = ({ closeIconType, onCloseFilter, onFilterApplied }: Filter
   const auth = useAuthStore()
   const dispatch = useDispatch()
   const filterState = useFilterStore()
-  const groupsCount = 2
   const [isShowAll, setShowAll] = React.useState<boolean>(false)
 
   const removeTechStack = (key: number) => {
@@ -64,7 +63,7 @@ export const Filter = ({ closeIconType, onCloseFilter, onFilterApplied }: Filter
   }
 
   React.useEffect(() => {
-    getAllGroups(groupsCount)
+    getAllGroups(Config.GROUPS_COUNT)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [auth])
 
