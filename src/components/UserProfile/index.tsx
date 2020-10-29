@@ -11,6 +11,7 @@ import { Config } from '../../config'
 interface MenuTypes {
   label: string;
   value: string;
+  sameWindow?: boolean;
   url: string;
 }
 
@@ -54,13 +55,18 @@ export const UserProfile = () => {
     {
       label: 'Logout',
       value: 'logout',
+      sameWindow: true,
       url: `${Config.SSO_URL}/?logout=true&retUrl=${window.location.origin}`
     }
   ]
 
   const menuClicked = (menuClicked: MenuTypes) => {
-    window.open(menuClicked.url, '_blank')
-    handleClose()
+    if (menuClicked.sameWindow) {
+      window.location.href = menuClicked.url
+    } else {
+      window.open(menuClicked.url, '_blank')
+      handleClose()
+    }
   }
 
   return (
