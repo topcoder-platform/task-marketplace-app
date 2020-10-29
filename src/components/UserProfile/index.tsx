@@ -54,7 +54,7 @@ export const UserProfile = () => {
     {
       label: 'Logout',
       value: 'logout',
-      url: `${Config.SSO_URL}/?logout=true&retUrl=${Config.REDIRECT_URL}`
+      url: `${Config.SSO_URL}/?logout=true&retUrl=${window.location.origin}`
     }
   ]
 
@@ -74,7 +74,7 @@ export const UserProfile = () => {
               <img className={styles.whiteArrow} src={WhiteArrowIcon} alt="dropdown arrow" />
             </div>
           ) : (
-            <a className={styles.loginButton} href={`${Config.SSO_URL}/?retUrl=${Config.REDIRECT_URL}`}>Login</a>
+            <a className={styles.loginButton} href={`${Config.SSO_URL}/?retUrl=${window.location.origin}`}>Login</a>
           )
         }
       </div>
