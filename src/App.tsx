@@ -16,6 +16,9 @@ import { useErrorStore } from './store/hooks/use-error'
 import { errorActions } from './store/reducers/error'
 import { Config } from './config'
 
+// configures OAuth connector
+configureOAuthConnector()
+
 function App () {
   const dispatch = useDispatch()
   const error = useErrorStore()
@@ -95,8 +98,6 @@ function App () {
   }
 
   React.useEffect(() => {
-    // configures OAuth connector
-    configureOAuthConnector()
     // Get if the token is available and set the auth store
     getToken()
     // initiate check for token expiry for every n mins
