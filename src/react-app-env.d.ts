@@ -1,5 +1,5 @@
 /// <reference types="react-scripts" />
-import { Theme } from '@material-ui/core/styles/createMuiTheme';
+import { Theme } from '@material-ui/core/styles/createMuiTheme'
 
 declare module '@material-ui/core/styles/createMuiTheme' {
   interface Theme {
@@ -37,7 +37,7 @@ declare module '@material-ui/core/styles/createMuiTheme' {
   }
 }
 
-declare module "@material-ui/core/styles/createBreakpoints" {
+declare module '@material-ui/core/styles/createBreakpoints' {
   interface BreakpointOverrides {
     xs: true; // removes the `xs` breakpoint
     sm: true;

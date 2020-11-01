@@ -30,11 +30,6 @@ export const ListView = () => {
   const [width] = useWindowSize()
   const showFilterModal = width <= CUT_OFFS.TABLET
 
-  React.useEffect(() => {
-    getTasksByPage(1)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
   const getTasksByPage = (page: number) => {
     dispatch(tasksActions.setInfo({
       loading: true
@@ -85,6 +80,10 @@ export const ListView = () => {
     }
   }
 
+  React.useEffect(() => {
+    getTasksByPage(1)
+  }, [])
+
   return (
     <div className={styles.listWrapper}>
       <div className={styles.titleWrapper}>
@@ -102,15 +101,17 @@ export const ListView = () => {
       <div className={styles.contentWrapper}>
         {/* If it is more than tablet resolution show sidebar filter else show modal filter */}
         {
-          showFilterModal ? (
-            <Modal open={showFilter}>
-              <Filter closeIconType="close" onCloseFilter={onToggleFilter} onFilterApplied={onFilterApplied} />
-            </Modal>
-          ) : (
-            <Sidebar show={showFilter} className={styles.filterWrapper}>
-              <Filter closeIconType="arrow" onCloseFilter={onToggleFilter} />
-            </Sidebar>
-          )
+          showFilterModal
+            ? (
+              <Modal open={showFilter}>
+                <Filter closeIconType="close" onCloseFilter={onToggleFilter} onFilterApplied={onFilterApplied} />
+              </Modal>
+              )
+            : (
+              <Sidebar show={showFilter} className={styles.filterWrapper}>
+                <Filter closeIconType="arrow" onCloseFilter={onToggleFilter} />
+              </Sidebar>
+              )
         }
         <TaskList
           list={list}

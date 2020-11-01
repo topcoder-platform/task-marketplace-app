@@ -29,7 +29,7 @@ export const getTasks = async (page: number, params?: FilterParams) => {
   let url = `${Config.API_URL}/challenges?types=Task&taskIsAssigned=false&isLightweight=false&page=${page}&perPage=${Config.PER_PAGE}`
   if (params) {
     if (params.groups) {
-      url += `&`+params.groups.map((groupId) => `groups[]=${groupId}`).join('&')
+      url += '&' + params.groups.map((groupId) => `groups[]=${groupId}`).join('&')
     }
     if (params.tags) {
       url = params.tags.reduce((acc, item) => {

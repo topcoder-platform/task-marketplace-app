@@ -103,8 +103,6 @@ function App () {
     // initiate check for token expiry for every n mins
     // which is configured in config.ts
     checkForTokenExpiry()
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const handleClose = () => {
@@ -127,11 +125,13 @@ function App () {
         autoHideDuration={3000}
         onClose={handleClose}
       >
-        {error.showError ? (
-          <Alert elevation={6} variant="filled" severity="error">
-            {error.message}
-          </Alert>
-        ) : undefined}
+        {error.showError
+          ? (
+            <Alert elevation={6} variant="filled" severity="error">
+              {error.message}
+            </Alert>
+            )
+          : undefined }
       </Snackbar>
     </ThemeProvider>
   )

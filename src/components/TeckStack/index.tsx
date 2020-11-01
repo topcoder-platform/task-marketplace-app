@@ -20,12 +20,6 @@ export const TechStack = ({ techStack, view }: TechStackProps) => {
   const { techStack: techStackInFilter } = useFilterStore()
   const dispatch = useDispatch()
 
-  const getStackItem = (stack: string) => (
-    <div key={stack} className={styles.techStack} onClick={() => onAddTechStack(stack)}>
-      {stack}
-    </div>
-  )
-
   const onAddTechStack = (stack: string) => {
     const isAlreadyAvailable = techStackInFilter.indexOf(stack) > -1
 
@@ -38,6 +32,12 @@ export const TechStack = ({ techStack, view }: TechStackProps) => {
       techStack: items
     }))
   }
+
+  const getStackItem = (stack: string) => (
+    <div key={stack} className={styles.techStack} onClick={() => onAddTechStack(stack)}>
+      {stack}
+    </div>
+  )
 
   return (
     <div className={clsx(styles.techStackWrapper,

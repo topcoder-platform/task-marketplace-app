@@ -73,15 +73,17 @@ export const UserProfile = () => {
     <div className={styles.userProfileSection}>
       <div className={styles.loginWrapper}>
         {
-          isLoggedIn ? (
-            <div className={styles.loggedInUser} onClick={handleClick}>
-              {getAvatar()}
-              <span className={styles.userHandler}>{user?.handle}</span>
-              <img className={styles.whiteArrow} src={WhiteArrowIcon} alt="dropdown arrow" />
-            </div>
-          ) : (
-            <a className={styles.loginButton} href={`${Config.SSO_URL}/?retUrl=${window.location.origin}`}>Login</a>
-          )
+          isLoggedIn
+            ? (
+              <div className={styles.loggedInUser} onClick={handleClick}>
+                {getAvatar()}
+                <span className={styles.userHandler}>{user?.handle}</span>
+                <img className={styles.whiteArrow} src={WhiteArrowIcon} alt="dropdown arrow" />
+              </div>
+              )
+            : (
+              <a className={styles.loginButton} href={`${Config.SSO_URL}/?retUrl=${window.location.origin}`}>Login</a>
+              )
         }
       </div>
 

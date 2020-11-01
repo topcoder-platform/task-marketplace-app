@@ -27,7 +27,7 @@ export const { actions, ...filterSlice } = createSlice({
     addGroup (state, { payload }) {
       return {
         ...state,
-        selectedGroups: [ ...state.selectedGroups, payload.groupId ]
+        selectedGroups: [...state.selectedGroups, payload.groupId]
       }
     },
     removeGroup (state, { payload }) {

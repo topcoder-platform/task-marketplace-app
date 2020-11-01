@@ -64,7 +64,6 @@ export const Filter = ({ closeIconType, onCloseFilter, onFilterApplied }: Filter
 
   React.useEffect(() => {
     getAllGroups(Config.GROUPS_COUNT)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [auth])
 
   const onGroupChecked = (event: any) => {

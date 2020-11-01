@@ -8,5 +8,5 @@ export const configureOAuthConnector = () => {
   configureConnector({
     connectorUrl: Config.SSO_URL,
     frameId: 'tc-accounts-iframe'
-   })
+  })
 }
