@@ -1,5 +1,5 @@
 // TopCoder hostname. "topcoder-dev" for the dev environment, "topcoder" for production
-const TC_HOST = process.env.TC_HOST
+const TC_HOST = process.env.REACT_APP_TC_HOST
 
 export const Config = {
   API_URL: `https://api.${TC_HOST}.com/v5`,
