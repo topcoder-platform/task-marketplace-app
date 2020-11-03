@@ -62,14 +62,16 @@ jobs:
     environment:
       DEPLOY_ENV: "DEV"
       LOGICAL_ENV: "dev"
-      APPNAME: "task-marketplace-app"          
+      APPNAME: "task-marketplace-app"
+      TC_HOST: "topcoder-dev.com"
     steps: *builddeploy_steps
   "build-prod":
     <<: *defaults
     environment:
       DEPLOY_ENV: "PROD"
       LOGICAL_ENV: "prod"
-      APPNAME: "task-marketplace-app"        
+      APPNAME: "task-marketplace-app"
+      TC_HOST: "topcoder.com"
     steps: *builddeploy_steps
 
 workflows:
