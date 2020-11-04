@@ -85,8 +85,11 @@ export const Filter = ({ closeIconType, onCloseFilter, onFilterApplied }: Filter
 
   React.useEffect(() => {
     getAllGroups(Config.GROUPS_COUNT)
-    getAllTechnologies()
   }, [auth])
+
+  React.useEffect(() => {
+    getAllTechnologies()
+  }, [])
 
   const onGroupChecked = (event: any) => {
     if (event.target.checked) {
