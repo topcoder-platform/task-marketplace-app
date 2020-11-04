@@ -6,6 +6,7 @@ export const Config = {
   APP_URL: `https://${TC_HOST}.com/challenges`,
   SSO_URL: `https://accounts-auth0.${TC_HOST}.com`,
   COMMUNITY_APP_URL: `https://community-app.${TC_HOST}.com`,
+  API_V4_URL: `https://api.${TC_HOST}.com/v4`,
   PER_PAGE: 9,
   GROUPS_COUNT: 5,
   TASK_DESCRIPTION_LIMIT: 140,
