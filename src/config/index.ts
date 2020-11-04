@@ -1,5 +1,6 @@
 export const Config = {
   API_URL: 'https://api.topcoder-dev.com/v5',
+  API_V4_URL: 'https://api.topcoder-dev.com/v4',
   APP_URL: 'https://topcoder-dev.com/challenges',
   SSO_URL: 'https://accounts-auth0.topcoder-dev.com',
   COMMUNITY_APP_URL: 'https://community-app.topcoder-dev.com',

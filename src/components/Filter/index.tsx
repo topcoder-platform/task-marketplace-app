@@ -3,9 +3,12 @@ import Chip from '@material-ui/core/Chip'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import FormGroup from '@material-ui/core/FormGroup'
 import Checkbox from '@material-ui/core/Checkbox'
+import Autocomplete from '@material-ui/lab/Autocomplete'
+import TextField from '@material-ui/core/TextField'
 import CloseArrowIcon from '../../assets/arrow-left.svg'
 import CrossIcon from '../../assets/cross.svg'
 import { getGroups } from '../../services/filter'
+import { getTechnologies } from '../../services/technologies'
 import { useStyles } from './styles'
 import { useAuthStore } from '../../store/hooks/use-auth'
 import { useFilterStore } from '../../store/hooks/use-filter'
@@ -62,8 +65,27 @@ export const Filter = ({ closeIconType, onCloseFilter, onFilterApplied }: Filter
       })
   }
 
+  const getAllTechnologies = async () => {
+    getTechnologies()
+      .then((res: any) => {
+        dispatch(filterActions.setInfo({
+          technologies: res.data.result.content
+            .filter(tech => (tech.status && tech.status.description === 'Active'))
+            .map(tech => tech.name)
+            .sort((a, b) => a.localeCompare(b))
+        }))
+      })
+      .catch((response) => {
+        dispatch(errorActions.setInfo({
+          showError: true,
+          message: response.message
+        }))
+      })
+  }
+
   React.useEffect(() => {
     getAllGroups(Config.GROUPS_COUNT)
+    getAllTechnologies()
   }, [auth])
 
   const onGroupChecked = (event: any) => {
@@ -129,22 +151,63 @@ export const Filter = ({ closeIconType, onCloseFilter, onFilterApplied }: Filter
         <div className={styles.techStackWrapper}>
           <div className={styles.techStackLabel}>Tech Stack</div>
           <div className={styles.chips}>
-            {filterState.techStack.map((value: any, index: number) => (
-              <Chip
-                key={value}
-                label={value}
-                classes={{
-                  root: styles.eachChip,
-                  label: styles.chipLabel
-                }}
-                onMouseDown={(event) => {
-                  event.stopPropagation()
-                }}
-                onDelete={() => removeTechStack(index)}
-                className={styles.chip}
-                deleteIcon={<img className={styles.deleteIcon} src={CrossIcon} alt="Tech stack delete icon" />}
-              />
-            ))}
+            <Autocomplete
+              multiple
+              options={filterState.technologies}
+              getOptionLabel={option => (option)}
+              onChange={(event, values) => {
+                const { techStack: currentTechStack } = filterState
+                const filtered = values.filter(value => currentTechStack.concat(filterState.technologies).includes(value))
+                dispatch(filterActions.setInfo({
+                  techStack: filtered
+                }))
+              }}
+              value={filterState.techStack}
+              classes={{
+                inputRoot: styles.techStackChipInput,
+                option: styles.techStackOption,
+                listbox: styles.techStackListBox
+              }}
+              filterSelectedOptions
+              autoHighlight
+              autoSelect
+              autoComplete
+              freeSolo
+              renderTags={(value, getTagProps) =>
+                value.map((option, index) => (
+                  <Chip
+                    key={option}
+                    label={option}
+                    classes={{
+                      root: styles.eachChip,
+                      label: styles.chipLabel
+                    }}
+                    onMouseDown={(event) => {
+                      event.stopPropagation()
+                    }}
+                    onDelete={() => removeTechStack(index)}
+                    className={styles.chip}
+                    deleteIcon={<img className={styles.deleteIcon} src={CrossIcon} alt="Tech stack delete icon" />}
+                  />
+                ))
+              }
+              renderInput={params => (
+                <TextField
+                  {...params}
+                />
+              )}
+              renderOption={(option, state) => {
+                if (state.inputValue.length === 0) {
+                  return option
+                }
+                const result = option.replace(new RegExp(`(${state.inputValue})`, 'gi'), '<strong>$1</strong>')
+                return (
+                  <React.Fragment>
+                    <span dangerouslySetInnerHTML={{ __html: result }}></span>
+                  </React.Fragment>
+                )
+              }}
+            />
           </div>
         </div>
         {

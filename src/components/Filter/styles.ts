@@ -115,6 +115,24 @@ export const useStyles = makeStyles((theme) => ({
     border: `1px solid ${theme.colorTheme.grey}`,
     borderRadius: 10,
     boxSizing: 'border-box',
-    padding: '18px 10px'
+    padding: '18px 10px 10px 10px'
+  },
+  techStackChipInput: {
+    '&&&:before': {
+      borderBottom: 'none'
+    },
+    '&&:after': {
+      borderBottom: 'none'
+    },
+    fontFamily: theme.fontFamily.roboto,
+    fontSize: 12
+  },
+  techStackOption: {
+    minHeight: '40px'
+  },
+  techStackListBox: {
+    maxHeight: '270px',
+    fontFamily: theme.fontFamily.roboto,
+    fontSize: 12
   }
 }))

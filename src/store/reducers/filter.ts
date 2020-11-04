@@ -7,6 +7,7 @@ import { Filter } from '../models/filter'
 const initState: Filter | null = {
   groupTotalCount: 0,
   groups: [],
+  technologies: [],
   selectedGroups: [],
   techStack: []
 }
