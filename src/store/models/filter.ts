@@ -20,6 +20,7 @@ export interface FilterParams {
 export interface Filter {
   groupTotalCount: number;
   groups: Group[];
+  technologies: string[];
   selectedGroups: string[];
   techStack: string[];
 }
