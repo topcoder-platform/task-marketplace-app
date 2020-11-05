@@ -26,7 +26,7 @@ export const getTasks = async (page: number, params?: FilterParams) => {
   }
   // Added types, taskIsAssigned and isLightweight by default
   // to get only the tasks
-  let url = `${Config.API_URL}/challenges?types=Task&taskIsAssigned=false&isActive=true&isLightweight=false&page=${page}&perPage=${Config.PER_PAGE}`
+  let url = `${Config.API_URL}/challenges?types=Task&taskIsAssigned=false&status=Active&isLightweight=false&page=${page}&perPage=${Config.PER_PAGE}`
   if (params) {
     if (params.groups) {
       url += '&' + params.groups.map((groupId) => `groups[]=${groupId}`).join('&')
