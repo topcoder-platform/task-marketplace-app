@@ -28,7 +28,7 @@ export const getTasks = async (page: number, params?: FilterParams) => {
   // to get only the tasks
   let url = `${Config.API_URL}/challenges?type=Tsk&taskIsAssigned=false&status=Active&page=${page}&perPage=${Config.PER_PAGE}`
   if (params) {
-    if (params.groups) {
+    if (params.groups?.length > 0) {
       url += '&' + params.groups.map((groupId) => `groups[]=${groupId}`).join('&')
     }
     if (params.tags) {
