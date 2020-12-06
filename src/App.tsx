@@ -3,14 +3,14 @@ import { ThemeProvider } from '@material-ui/core/styles'
 import { Snackbar } from '@material-ui/core'
 import Alert from '@material-ui/lab/Alert'
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
-import { getAuthUserTokens } from '@topcoder/micro-frontends-navbar-app'
-
+import { disableSidebarForRoute, getAuthUserTokens } from '@topcoder/micro-frontends-navbar-app'
 import { RoutesWrapper } from './routes'
 import { theme } from './styles/theme'
 import { useDispatch } from 'react-redux'
 import { authActions } from './store/reducers/auth'
 import { useErrorStore } from './store/hooks/use-error'
 import { errorActions } from './store/reducers/error'
+import { Config } from './config'
 
 // configures OAuth connector
 
@@ -58,6 +58,10 @@ function App () {
   React.useEffect(() => {
     // Get if the token is available and set the auth store
     getToken()
+  }, [])
+
+  React.useLayoutEffect(() => {
+    disableSidebarForRoute(Config.APP_ROUTE)
   }, [])
 
   const handleClose = () => {
