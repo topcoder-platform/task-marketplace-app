@@ -7,20 +7,8 @@ export const useStyles = makeStyles((theme) => ({
       padding: '33px 15px 33px 15px'
     }
   },
-  title: {
-    fontFamily: theme.fontFamily.barlowCondensed,
-    color: '#2A2A2A',
-    fontSize: 48,
-    lineHeight: '50px',
-    flex: 1,
-    [theme.breakpoints.down('sm')]: {
-      fontSize: 36,
-      lineHeight: '36px'
-    }
-  },
   titleWrapper: {
-    display: 'flex',
-    alignItems: 'center'
+    display: 'flex'
   },
   filterIconWrapper: {
     color: theme.colorTheme.darkGreen,

@@ -1,7 +1,6 @@
 import React from 'react'
 import { useStyles } from './styles'
 import { useWindowSize } from '@react-hook/window-size'
-import { Typography } from '@material-ui/core'
 import { getTasks } from '../../services/tasks'
 import { useTasksStore } from '../../store/hooks/use-tasks'
 import { useDispatch } from 'react-redux'
@@ -87,17 +86,14 @@ export const ListView = () => {
   return (
     <div className={styles.listWrapper}>
       <div className={styles.titleWrapper}>
-        <Typography variant="h3" className={styles.title}>TOPCODER TASKS</Typography>
+        { !showFilter && (
+            <div className={styles.filterIconWrapper} onClick={onToggleFilter}>
+              <img className={styles.filterIcon} src={FilterIcon} alt="open filter icon" />
+              <span>SHOW FILTER</span>
+            </div>
+        ) }
         <ViewToggle view={view} onToggleView={onToggleView} />
       </div>
-      {
-        !showFilter && (
-          <div className={styles.filterIconWrapper} onClick={onToggleFilter}>
-            <img className={styles.filterIcon} src={FilterIcon} alt="open filter icon" />
-            <span>SHOW FILTER</span>
-          </div>
-        )
-      }
       <div className={styles.contentWrapper}>
         {/* If it is more than tablet resolution show sidebar filter else show modal filter */}
         {
