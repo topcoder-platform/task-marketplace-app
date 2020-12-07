@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core'
 
 export const useStyles = makeStyles((theme) => ({
   filterWrapper: {
-    border: '1px solid #D7D7D7',
+    backgroundColor: theme.colorTheme.white,
     marginRight: 20,
     paddingTop: 24,
     paddingLeft: 20,
@@ -51,7 +51,6 @@ export const useStyles = makeStyles((theme) => ({
     borderRadius: 5,
     marginRight: 10,
     paddingRight: 5,
-    backgroundColor: '#E9E9E9',
     marginBottom: 5
   },
   chipLabel: {

@@ -4,7 +4,7 @@ export const useStyles = makeStyles((theme) => ({
   taskItem: {
     width: 326,
     minHeight: 255,
-    backgroundColor: theme.colorTheme.deepGrey,
+    backgroundColor: theme.colorTheme.white,
     paddingTop: 22,
     paddingBottom: 22,
     paddingLeft: 20,

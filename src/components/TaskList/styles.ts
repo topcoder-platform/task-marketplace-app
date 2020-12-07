@@ -45,6 +45,7 @@ export const useStyles = makeStyles((theme) => ({
     margin: '16px 0'
   },
   showMoreButton: {
-    borderRadius: 20
+    borderRadius: 20,
+    backgroundColor: theme.colorTheme.white
   }
 }))
