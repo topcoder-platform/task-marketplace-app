@@ -48,7 +48,7 @@ jobs:
       DEPLOY_ENV: "DEV"
       LOGICAL_ENV: "dev"
       REACT_APP_TC_HOST: "topcoder-dev"
-      APPNAME: "task-marketplace"
+      APPNAME: "micro-frontends-task-marketplace-app"
     steps: *builddeploy_steps
 
   "build-prod":
@@ -57,7 +57,7 @@ jobs:
       DEPLOY_ENV: "PROD"
       LOGICAL_ENV: "prod"
       REACT_APP_TC_HOST: "topcoder"
-      APPNAME: "task-marketplace"
+      APPNAME: "micro-frontends-task-marketplace-app"
     steps: *builddeploy_steps
 
 workflows:
