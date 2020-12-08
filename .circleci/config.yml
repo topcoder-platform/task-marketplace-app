@@ -70,7 +70,7 @@ workflows:
           filters:
             branches:
               only:
-                - develop
+                - feature/micro-app
 
       # Production builds are exectuted only on tagged commits to the
       # master branch.
