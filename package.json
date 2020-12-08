@@ -1,5 +1,5 @@
 {
-  "name": "@topcoder/micro-frontends-task-marketplace",
+  "name": "@topcoder/micro-frontends-task-marketplace-app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
