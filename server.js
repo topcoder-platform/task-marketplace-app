@@ -6,7 +6,7 @@ const https = require('https')
 const app = express()
 
 app.use(
-  '/task-marketplace',
+  '/tasks',
   express.static('./dist', {
     setHeaders: function setHeaders(res) {
       res.header('Access-Control-Allow-Origin', '*')

@@ -1,7 +1,7 @@
 version: '3'
 services:
-  micro-frontends-react-app:
-    image: micro-frontends-react-app:latest
+  micro-frontends-task-marketplace-app:
+    image: micro-frontends-task-marketplace-app:latest
     build:
       context: ../
       dockerfile: docker/Dockerfile

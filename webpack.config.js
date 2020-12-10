@@ -6,7 +6,7 @@ const singleSpaDefaults = require('webpack-config-single-spa-react-ts')
 module.exports = (webpackConfigEnv, argv) => {
   const defaultConfig = singleSpaDefaults({
     orgName: 'topcoder',
-    projectName: 'micro-frontends-task-marketplace',
+    projectName: 'micro-frontends-task-marketplace-app',
     orgPackagesAsExternal: true,
     webpackConfigEnv,
     argv

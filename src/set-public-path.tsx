@@ -5,4 +5,4 @@ import { setPublicPath } from 'systemjs-webpack-interop'
  * https://single-spa.js.org/docs/faq/#code-splits
  */
 
-setPublicPath('@topcoder/micro-frontends-task-marketplace')
+setPublicPath('@topcoder/micro-frontends-task-marketplace-app')

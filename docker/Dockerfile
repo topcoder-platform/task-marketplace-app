@@ -2,10 +2,10 @@
 FROM node:latest
 
 # Copy the current directory into the Docker image
-COPY . /micro-frontends-react-app
+COPY . /micro-frontends-task-marketplace-app
 
 # Set working directory for future use
-WORKDIR /micro-frontends-react-app
+WORKDIR /micro-frontends-task-marketplace-app
 
 # Install the dependencies from package.json
 RUN npm install
