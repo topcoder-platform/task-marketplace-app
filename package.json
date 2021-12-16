@@ -17,7 +17,7 @@
     "@types/react-dom": "^16.9.0",
     "@types/react-redux": "^7.1.9",
     "@types/react-router-dom": "^5.1.6",
-    "axios": "^0.20.0",
+    "axios": "^0.21.3",
     "clsx": "^1.1.1",
     "html-to-text": "^5.1.1",
     "material-ui-chip-input": "^1.1.0",
@@ -26,7 +26,7 @@
     "react-loader-spinner": "^3.1.14",
     "react-redux": "^7.2.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^4.0.0",
+    "react-scripts": "^5.0.0",
     "typescript": "~3.7.2"
   },
   "scripts": {
