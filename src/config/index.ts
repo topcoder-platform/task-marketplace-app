@@ -1,7 +1,7 @@
 // TopCoder hostname. "topcoder-dev" for the dev environment, "topcoder" for production
 
 const env = process.env.NODE_ENV || 'development'
-const TC_HOST = env === 'production' ? 'topcoder' : 'topcoder-dev'
+const TC_HOST = env === 'production' ? 'topcoder' : env === 'qa' ? 'topcoder-qa' : 'topcoder-dev'
 
 export const Config = {
   APP_ROUTE: '/task-marketplace',
