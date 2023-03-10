@@ -1,5 +1,5 @@
 # Use the base image with Node.js
-FROM node:latest
+FROM node:10.22.1
 
 # Copy the current directory into the Docker image
 COPY . /micro-frontends-task-marketplace-app
